@@ -1,0 +1,55 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # fetch tags
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Configure npm auth
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+        # optional: fail fast if tests fail. Remove this step if you don't have tests.
+
+      - name: Publish to npm
+        run: |
+          # ensure version matches tag (optional safety check)
+          TAG=${GITHUB_REF#refs/tags/}
+          echo "Tag: $TAG"
+          # Optionally check package.json version matches tag (v1.2.3 vs 1.2.3)
+          PKG_VER=$(node -p "require('./package.json').version")
+          if [ "v$PKG_VER" != "$TAG" ]; then
+            echo "ERROR: package.json version ($PKG_VER) does not match tag ($TAG)"
+            exit 1
+          fi
+
+          npm publish --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
