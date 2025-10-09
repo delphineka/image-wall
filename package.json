@@ -1,0 +1,35 @@
+{
+  "name": "imagewall",
+  "version": "1.0.0",
+  "description": "A modern justified image grid with built-in lightbox, inspired by JustifiedGallery and Colorbox.",
+  "type": "module",
+  "main": "./dist/imagewall.js",
+  "module": "./dist/imagewall.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "justified-gallery",
+    "lightbox",
+    "image-grid",
+    "image-wall",
+    "photography",
+    "photo",
+    "masonry",
+    "responsive",
+    "gallery",
+    "vite",
+    "typescript",
+    "flickr"
+  ],
+  "author": "Richard Allen, EnzedOnline",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.7.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9"
+  }
+}
