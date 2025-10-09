@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image Wall Demo</title>
+    </head>
+
+    <body>
+        <div style="width:90vw;margin:0 auto;">
+            <div class="image-wall" id="gallery">
+                <picture data-src="/media/2016-00577.max-1200x600.format-webp.webp"
+                    data-caption="Kowloon Harbour, Hong Kong">
+                    <source srcset="/media/2016-00577.height-300.format-webp.webp" type="image/webp">
+                    <img src="/media/2016-00577.height-300.format-jpeg.jpg" alt="2016-00577" height="180" width="auto"
+                        data-image-id="75">
+                </picture>
+                <picture data-src="/media/good-food.max-1200x600.format-webp.webp" data-caption="">
+                    <source srcset="/media/good-food.height-300.format-webp.webp" type="image/webp">
+                    <img src="/media/good-food.height-300.format-jpeg.jpg" alt="good-food" height="180" width="auto"
+                        data-image-id="73">
+                </picture>
+                <picture data-src="/media/2018-03614_pano.max-1200x600.format-webp.webp" data-caption="Ak Say Glacier, Kyrgyzstan">
+                    <source srcset="/media/2018-03614_pano.height-300.format-webp.webp" type="image/webp">
+                    <img src="/media/2018-03614_pano.height-300.format-jpeg.jpg"
+                        alt="ak say glacier" height="180" width="auto" data-image-id="67">
+                </picture>
+                <picture data-src="/media/goneforawander-banner.max-1200x600.format-webp.webp" data-caption="Mount Holdsworth, New Zealand">
+                    <source srcset="/media/goneforawander-banner.height-300.format-webp.webp" type="image/webp">
+                    <img src="/media/goneforawander-banner.height-300.format-jpeg.jpg" alt="goneforawander-banner"
+                        height="180" width="auto" data-image-id="53">
+                </picture>
+                <picture data-src="/media/onion-chutney.max-1200x600.format-webp.webp" data-caption="">
+                    <source srcset="/media/onion-chutney.height-300.format-webp.webp" type="image/webp">
+                    <img src="/media/onion-chutney.height-300.format-jpeg.jpg" alt="onion-chutney" height="180"
+                        width="auto" data-image-id="60">
+                </picture>
+                <picture data-src="/media/hump-ridge-track.max-1200x600.format-webp.webp" data-caption="Hump Ridge Track, Fiordland, New Zealand">
+                    <source srcset="/media/hump-ridge-track.height-300.format-webp.webp" type="image/webp">
+                    <img src="/media/hump-ridge-track.height-300.format-jpeg.jpg" alt="hump-ridge-track" height="180"
+                        width="auto" data-image-id="58">
+                </picture>
+                <picture data-src="/media/janis-coding.max-1200x600.format-webp.webp" data-caption="Janis, Senior Coding Assistant">
+                    <source srcset="/media/janis-coding.height-300.format-webp.webp" type="image/webp">
+                    <img src="/media/janis-coding.height-300.format-jpeg.jpg" alt="janis-coding" height="180"
+                        width="auto" data-image-id="3">
+                </picture>
+                <picture data-src="/media/manaslu.max-1200x600.format-webp.webp"
+                    data-caption="Samagaun, Manaslu Circuit, Nepal">
+                    <source srcset="/media/manaslu.height-300.format-webp.webp" type="image/webp">
+                    <img src="/media/manaslu.height-300.format-jpeg.jpg" alt="Samagaun, Manaslu Circuit, Nepal"
+                        height="180" width="auto" data-image-id="76">
+                </picture>
+                <picture data-src="/media/motorbike_riding_through_the_i.max-1200x600.format-webp.webp" data-caption="Leh-Manali Highway, Indian Himalayas">
+                    <source srcset="/media/motorbike_riding_through_the_ind.height-300.format-webp.webp"
+                        type="image/webp">
+                    <img src="/media/motorbike_riding_through_the_indi.height-300.format-jpeg.jpg"
+                        alt="motorbike riding through the indian himalayas" height="180" width="auto"
+                        data-image-id="17">
+                </picture>
+            </div>
+        </div>
+        <script type="module">
+            import { ImageWall, LightBox } from './src/index';
+
+            const gallery = document.getElementById('gallery');
+            // Initialize ImageWall with LightBox
+            if (gallery) {
+                window.imageWall = new ImageWall(gallery, { rowHeight: 180, gap: 6, debug: true });
+            } else {
+                console.error("Gallery element not found");
+            }
+
+            // Initialize LightBox without ImageWall
+            // if (gallery) {
+            //     window.lightBox = new LightBox({ container: gallery });
+            // } else {
+            //     console.error("Gallery element not found");
+            // }
+        </script>
+    </body>
+
+</html>
