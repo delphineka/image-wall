@@ -1,6 +1,6 @@
 {
   "name": "imagewall",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A modern justified image grid with built-in lightbox, inspired by Flickr Wall, JustifiedGallery and Colorbox.",
   "type": "module",
   "main": "./dist/imagewall.js",
