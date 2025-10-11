@@ -205,7 +205,7 @@ The options have the following type, exposed in `ImageWallOptions`:
     debug?: boolean;     // enable debug logging
 ```
 
-As indicated, the row height will be adjusted to fit the images while keeping their aspect ratios.
+As indicated, the row height will be adjusted to fit the images while keeping their aspect ratios. The `rowHeight` value is the **maximum** value that the row height will have.
 
 For example, to create an image wall with target height 180px, gap 6px and with LightBox disabled:
 ```ts
