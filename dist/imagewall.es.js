@@ -19,9 +19,9 @@ class k {
   touchEndX = 0;
   touchEndY = 0;
   constructor(s) {
-    this.container = s.container, this.images = s.images ?? [], (!this.images || this.images.length === 0) && (this.images = Array.from(this.container.querySelectorAll(":scope > picture, :scope > img"))), this.debug = !!s.debug, this.modal = document.createElement("div"), this.modal.className = "lightbox-modal", this.inner = document.createElement("div"), this.inner.className = "lightbox-inner";
+    this.container = s.container, this.images = s.images ?? [], (!this.images || this.images.length === 0) && (this.images = Array.from(this.container.querySelectorAll(":scope > picture, :scope > img"))), this.debug = !!s.debug, this.modal = document.createElement("div"), this.modal.className = "lightbox-modal", this.modal.style.display = "none", this.inner = document.createElement("div"), this.inner.className = "lightbox-inner";
     const i = document.createElement("img"), h = document.createElement("img");
-    i.className = "lightbox-img", h.className = "lightbox-img", i.classList.remove("visible"), h.classList.remove("visible"), this.imgEls = [i, h], this.captionEl = document.createElement("div"), this.captionEl.className = "lightbox-caption", this.prevBtn = document.createElement("button"), this.prevBtn.type = "button", this.prevBtn.className = "lightbox-prev", this.nextBtn = document.createElement("button"), this.nextBtn.type = "button", this.nextBtn.className = "lightbox-next", this.closeBtn = document.createElement("button"), this.closeBtn.type = "button", this.closeBtn.className = "lightbox-close", this.inner.appendChild(i), this.inner.appendChild(h), this.inner.appendChild(this.captionEl), this.inner.appendChild(this.prevBtn), this.inner.appendChild(this.nextBtn), this.inner.appendChild(this.closeBtn), this.modal.appendChild(this.inner), document.body.appendChild(this.modal), this.modal.addEventListener("click", (e) => {
+    i.className = "lightbox-img", h.className = "lightbox-img", i.classList.remove("visible"), h.classList.remove("visible"), this.imgEls = [i, h], this.captionEl = document.createElement("div"), this.captionEl.className = "lightbox-caption", this.prevBtn = document.createElement("button"), this.prevBtn.type = "button", this.prevBtn.className = "lightbox-prev", this.nextBtn = document.createElement("button"), this.nextBtn.type = "button", this.nextBtn.className = "lightbox-next", this.closeBtn = document.createElement("button"), this.closeBtn.type = "button", this.closeBtn.className = "lightbox-close", this.inner.append(i, h, this.captionEl, this.prevBtn, this.nextBtn, this.closeBtn), this.modal.append(this.inner), document.body.append(this.modal), this.modal.addEventListener("click", (e) => {
       e.target === this.modal && this.hide();
     }), this.prevBtn.addEventListener("click", () => this.prev()), this.nextBtn.addEventListener("click", () => this.next()), i.addEventListener("click", (e) => this.imageClickHandler(e)), h.addEventListener("click", (e) => this.imageClickHandler(e)), i.addEventListener("contextmenu", (e) => e.preventDefault()), h.addEventListener("contextmenu", (e) => e.preventDefault()), this.closeBtn.addEventListener("click", () => this.hide()), document.addEventListener("keydown", (e) => {
       if (this.modal.classList.contains("open"))
@@ -65,7 +65,7 @@ class k {
       this.debug && console.warn("LightBox: clicked element missing data-src", i);
       return;
     }
-    this.modal.classList.add("open");
+    this.modal.classList.add("open"), this.modal.style.removeProperty("display");
     const b = this.imgEls[this.activeLayer], n = this.imgEls[1 - this.activeLayer];
     this.debug && console.debug(`LightBox: show index ${s}, src=${h}, caption="${e}"`);
     const u = ++this.loadId;
@@ -74,8 +74,8 @@ class k {
       n.classList.add("visible"), b.classList.remove("visible"), this.debug && console.debug("LightBox: image loaded successfully", n), this.activeLayer = 1 - this.activeLayer, e ? (this.captionEl.textContent = e, this.captionEl.classList.add("visible")) : (this.captionEl.textContent = "", this.captionEl.classList.remove("visible"));
       const f = (this.currentIndex + 1) % this.images.length, l = this.images[f].dataset.src;
       if (l) {
-        const y = new Image();
-        y.src = l, this.debug && console.debug(`LightBox: preloading next image ${f} (${l})`);
+        const v = new Image();
+        v.src = l, this.debug && console.debug(`LightBox: preloading next image ${f} (${l})`);
       }
     }, n.onerror = () => {
       this.debug && console.warn("LightBox: failed to load", h);
@@ -133,24 +133,24 @@ class H extends EventTarget {
       return { el: t, aspect: o, naturalW: d, naturalH: r, src: a.currentSrc || a.src || "" };
     })), i = this.container.getBoundingClientRect(), h = getComputedStyle(this.container), e = parseFloat(h.paddingLeft) || 0, b = parseFloat(h.paddingRight) || 0, n = Math.max(1, Math.floor(i.width - e - b));
     this.opts.debug && (console.debug("[ImageWall] containerInner:", n), console.debug("[ImageWall] items:", s.map((t) => ({ src: t.src, aspect: +t.aspect.toFixed(3) }))));
-    const u = this.opts.gap, f = this.opts.rowHeight, v = [];
-    let l = [], y = 0;
+    const u = this.opts.gap, f = this.opts.rowHeight, y = [];
+    let l = [], v = 0;
     for (const t of s)
-      if (l.push(t), y += t.aspect, y * f + u * (l.length - 1) >= n) {
-        const d = (n - u * (l.length - 1)) / y, r = l.map((o) => o.aspect * d);
-        v.push({ items: l.slice(), floatWidths: r, rowHFloat: d, stretch: !0 }), l = [], y = 0;
+      if (l.push(t), v += t.aspect, v * f + u * (l.length - 1) >= n) {
+        const d = (n - u * (l.length - 1)) / v, r = l.map((o) => o.aspect * d);
+        y.push({ items: l.slice(), floatWidths: r, rowHFloat: d, stretch: !0 }), l = [], v = 0;
       }
     if (l.length)
       if (this.opts.lastRowAlign === "justify") {
         const a = l.reduce((o, m) => o + m.aspect, 0), d = (n - u * (l.length - 1)) / a, r = l.map((o) => o.aspect * d);
-        v.push({ items: l.slice(), floatWidths: r, rowHFloat: d, stretch: !0 });
+        y.push({ items: l.slice(), floatWidths: r, rowHFloat: d, stretch: !0 });
       } else {
         const a = l.map((d) => d.aspect * f);
-        v.push({ items: l.slice(), floatWidths: a, rowHFloat: f, stretch: !1 });
+        y.push({ items: l.slice(), floatWidths: a, rowHFloat: f, stretch: !1 });
       }
-    this.opts.debug && console.debug("[ImageWall] rowsTemp:", v.map((t, a) => ({ idx: a, count: t.items.length, stretch: t.stretch, rowH: Math.round(t.rowHFloat) })));
+    this.opts.debug && console.debug("[ImageWall] rowsTemp:", y.map((t, a) => ({ idx: a, count: t.items.length, stretch: t.stretch, rowH: Math.round(t.rowHFloat) })));
     const L = [];
-    for (const t of v) {
+    for (const t of y) {
       const a = t.items.length, d = u * Math.max(0, a - 1);
       if (t.stretch) {
         const r = n - d, o = t.floatWidths.map((c) => Math.floor(c)), m = t.floatWidths.map((c, g) => ({ idx: g, frac: c - o[g] }));
