@@ -173,6 +173,8 @@ export class LightBox {
         // Build DOM
         this.modal = document.createElement('div');
         this.modal.className = 'lightbox-modal';
+        // Start hidden via inline style to handle page css not fully loaded yet
+        this.modal.style.display = 'none'; 
 
         this.inner = document.createElement('div');
         this.inner.className = 'lightbox-inner';
@@ -203,14 +205,9 @@ export class LightBox {
         this.closeBtn.className = 'lightbox-close';
 
         // Append in order: two image layers, caption, controls
-        this.inner.appendChild(imgA);
-        this.inner.appendChild(imgB);
-        this.inner.appendChild(this.captionEl);
-        this.inner.appendChild(this.prevBtn);
-        this.inner.appendChild(this.nextBtn);
-        this.inner.appendChild(this.closeBtn);
-        this.modal.appendChild(this.inner);
-        document.body.appendChild(this.modal);
+        this.inner.append(imgA, imgB, this.captionEl, this.prevBtn, this.nextBtn, this.closeBtn);
+        this.modal.append(this.inner);
+        document.body.append(this.modal);
 
         // Event listeners
         this.modal.addEventListener('click', (e) => {
@@ -311,6 +308,7 @@ export class LightBox {
 
         // Make modal visible via class
         this.modal.classList.add('open');
+        this.modal.style.removeProperty('display'); // hidden initially; CSS .open class makes visible
 
         const curr = this.imgEls[this.activeLayer];
         const next = this.imgEls[1 - this.activeLayer];
