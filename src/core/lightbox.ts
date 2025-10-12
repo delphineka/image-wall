@@ -179,6 +179,9 @@ export class LightBox {
         this.inner = document.createElement('div');
         this.inner.className = 'lightbox-inner';
 
+        const spinner = document.createElement('div');
+        spinner.className = 'lightbox-spinner';
+
         const imgA = document.createElement('img');
         const imgB = document.createElement('img');
         imgA.className = 'lightbox-img';
@@ -205,7 +208,7 @@ export class LightBox {
         this.closeBtn.className = 'lightbox-close';
 
         // Append in order: two image layers, caption, controls
-        this.inner.append(imgA, imgB, this.captionEl, this.prevBtn, this.nextBtn, this.closeBtn);
+        this.inner.append(imgA, imgB, this.captionEl, this.prevBtn, this.nextBtn, this.closeBtn, spinner);
         this.modal.append(this.inner);
         document.body.append(this.modal);
 
@@ -309,6 +312,9 @@ export class LightBox {
         // Make modal visible via class
         this.modal.classList.add('open');
         this.modal.style.removeProperty('display'); // hidden initially; CSS .open class makes visible
+        this.inner.classList.remove('loading'); // in case spinner was shown previously
+        // Show spinner until image loads
+        this.inner.classList.add('loading');
 
         const curr = this.imgEls[this.activeLayer];
         const next = this.imgEls[1 - this.activeLayer];
@@ -333,6 +339,7 @@ export class LightBox {
             // Reveal next and hide current (CSS transition handles crossfade)
             next.classList.add('visible');
             curr.classList.remove('visible');
+            this.inner.classList.remove('loading'); // hide spinner
 
             if (this.debug) {
                 console.debug(`LightBox: image loaded successfully`, next);
