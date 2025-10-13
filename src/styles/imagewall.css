@@ -80,6 +80,7 @@
     padding: .5rem;
     background: #000000b3;
     display: none;
+    z-index: 2;
 }
 
 .lightbox-caption.visible {
